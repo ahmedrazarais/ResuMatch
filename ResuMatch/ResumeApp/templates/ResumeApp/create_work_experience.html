@@ -1,0 +1,77 @@
+{% extends "navbar.html" %}
+
+{% block title %}Add Work Experience{% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-purple-50">
+  <!-- Container -->
+  <div class="bg-white shadow-lg rounded-lg w-full max-w-2xl p-8">
+    <!-- Title -->
+    <h1 class="text-2xl font-semibold text-center text-purple-800 mb-6">Add Work Experience</h1>
+
+    <!-- Form -->
+    <form method="POST" class="space-y-6">
+      {% csrf_token %}
+      
+      <!-- Company Name -->
+      <div>
+        <label for="id_company_name" class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+        {{ work_experience_form.company_name }}
+        {% if work_experience_form.company_name.errors %}
+          <div class="text-red-500 text-sm">
+            {% for error in work_experience_form.company_name.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Position -->
+      <div>
+        <label for="id_position" class="block text-sm font-medium text-gray-700 mb-2">Position</label>
+        {{ work_experience_form.position }}
+        {% if work_experience_form.position.errors %}
+          <div class="text-red-500 text-sm">
+            {% for error in work_experience_form.position.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Dates -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <label for="id_start_date" class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+          {{ work_experience_form.start_date }}
+        </div>
+        <div>
+          <label for="id_end_date" class="block text-sm font-medium text-gray-700 mb-2">End Date (or Present)</label>
+          {{ work_experience_form.end_date }}
+        </div>
+      </div>
+
+      <!-- Is Current -->
+      <div class="flex items-center">
+        {{ work_experience_form.is_current }}
+        <label for="id_is_current" class="ml-2 block text-sm text-gray-700">Currently Working Here</label>
+      </div>
+
+      <!-- Job Description -->
+      <div>
+        <label for="id_job_description" class="block text-sm font-medium text-gray-700 mb-2">Job Description</label>
+        {{ work_experience_form.job_description }}
+      </div>
+
+      <!-- Submit Link (styled as a button) -->
+      <div>
+          <button 
+            type="submit"
+            class="w-full inline-block bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-md shadow-sm text-center">
+            Save Work Experience
+          </button>  
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

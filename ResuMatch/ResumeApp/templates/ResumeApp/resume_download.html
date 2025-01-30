@@ -1,0 +1,26 @@
+{% extends "navbar.html" %}
+
+{% block title %}
+    Download Resume
+{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto px-4">
+        <div class="flex justify-center items-center h-screen">
+            <div class="bg-purple-100 border-2 border-purple-700 p-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:bg-purple-200 hover:border-purple-600 mt-[-50px]">
+                <h1 class="text-2xl text-center font-bold mb-4 text-purple-800">Download Resume</h1>
+                <p class="mb-4 text-gray-700">Click the buttons below to download your resume in PDF or Word format.</p>
+                <div class="flex justify-center space-x-4">
+                    <!-- Button for PDF Download -->
+                    <a href="{% url 'convert_to_pdf' %}" class="bg-purple-800 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out transform hover:scale-105">
+                        Download as PDF
+                    </a>
+                    <!-- Button for Word Download -->
+                    <a href="#" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-500 transition duration-300 ease-in-out transform hover:scale-105">
+                        Download as Word
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

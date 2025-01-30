@@ -1,0 +1,71 @@
+{% extends "navbar.html" %}
+
+{% block title %}Add Education{% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-purple-50">
+  <!-- Container -->
+  <div class="bg-white shadow-lg rounded-lg w-full max-w-2xl p-8">
+    <!-- Title -->
+    <h1 class="text-2xl font-semibold text-center text-purple-800 mb-6">Add Education</h1>
+
+    <!-- Form -->
+    <form method="POST" class="space-y-6">
+      {% csrf_token %}
+      
+      <!-- Institute Name -->
+      <div>
+        <label for="id_institute_name" class="block text-sm font-medium text-gray-700 mb-2">Institute Name</label>
+        {{ education_form.institute_name }}
+        {% if education_form.institute_name.errors %}
+          <div class="text-red-500 text-sm">
+            {% for error in education_form.institute_name.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Degree -->
+      <div>
+        <label for="id_degree" class="block text-sm font-medium text-gray-700 mb-2">Degree</label>
+        {{ education_form.degree }}
+        {% if education_form.degree.errors %}
+          <div class="text-red-500 text-sm">
+            {% for error in education_form.degree.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Dates -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <label for="id_start_date" class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+          {{ education_form.start_date }}
+        </div>
+        <div>
+          <label for="id_end_date" class="block text-sm font-medium text-gray-700 mb-2">End Date (or Present)</label>
+          {{ education_form.end_date }}
+        </div>
+      </div>
+
+      <!-- Is Current -->
+      <div class="flex items-center">
+        {{ education_form.is_current }}
+        <label for="id_is_current" class="ml-2 block text-sm text-gray-700">Currently Enrolled</label>
+      </div>
+
+      <!-- Submit Link (styled as a button) -->
+      <div>
+          <button 
+            type="submit"
+            class="w-full inline-block bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-md shadow-sm text-center">
+            Save Education
+          </button>  
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,218 @@
+{% extends "navbar.html" %}
+
+{% block title %}Create Resume{% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-purple-50">
+    <!-- Container -->
+    <div class="bg-white shadow-lg rounded-lg w-full max-w-4xl p-8">
+        <h2 class="text-2xl font-semibold text-center text-purple-600 mb-6">ResuMatch Create Your Resume</h2>
+       
+        
+            
+            
+        
+        
+        
+        <form method="POST" action="{% url 'create_resume' %}" class="space-y-6">
+
+            {% csrf_token %}
+            
+            <!-- Personal Details Section -->
+            <div class="bg-purple-100 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-purple-600 mb-4">Personal Details</h3>
+                <div class="flex space-x-3">
+                    <div class="flex-1">
+                        <label for="full_name" class="block mb-2 text-purple-600">Full Name:</label>
+                        {{ resume_form.full_name }}
+                    </div>
+
+                    <div class="flex-1">
+                        <label for="gmail" class="block mb-2 text-purple-600">Email:</label>
+                        
+                        {{ resume_form.gmail }}
+                    </div>
+                    
+
+
+                    <div class="flex-1">
+                        <label for="contact_no" class="block mb-2 text-purple-600">Contact No:</label>
+                        {{ resume_form.contact_no }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objective Section -->
+            <div class="bg-purple-100 p-6 rounded-lg shadow-md mt-6">
+                <h3 class="text-xl font-semibold text-purple-600 mb-4">Objective</h3>
+                <div class="flex space-x-4">
+                    <div class="flex-1">
+                        <label for="objective" class="block mb-2 text-purple-600">Objective:</label>
+                        {{ resume_form.objective }}
+                    </div>
+                </div>
+            </div>
+
+            
+           <!-- Work Experience Section -->
+            <div class="bg-purple-100 p-6 rounded-lg shadow-md mt-6">
+                <h3 class="text-xl font-bold text-purple-600 mb-6">Work Experience</h3>
+
+                <!-- Experience Cards Grid -->
+                <div id="work-experience-section" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {% if work_experience_data %}
+                        {% for experience in work_experience_data %}
+                            <!-- Experience Card -->
+                            <div class="experience-entry bg-white border border-purple-300 rounded-lg shadow-lg p-4 relative hover:shadow-xl hover:border-purple-400 transition-all">
+                                <!-- Edit Button -->
+                                <button 
+                                    class="absolute top-2 right-2 text-purple-500 hover:text-purple-700 transition-colors"
+                                    title="Edit Work Experience">
+                                    <p>Edit</p>
+                                </button>
+
+                                <!-- Experience Details -->
+                                <h4 class="text-lg font-semibold text-purple-600 mb-2 italic">{{ experience.company_name }}</h4>
+                                <p class="text-gray-700 mb-2">
+                                    <strong class="text-gray-600">Position:</strong> {{ experience.position }}
+                                </p>
+                                <p class="text-gray-700 mb-2">
+                                    <strong class="text-gray-600">Start Date:</strong> {{ experience.start_date }}
+                                </p>
+                                <p class="text-gray-700 mb-2">
+                                    <strong class="text-gray-600">End Date:</strong> 
+                                    {% if experience.end_date %}
+                                        {{ experience.end_date }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </p>
+                                <p class="text-gray-700">
+                                    <strong class="text-gray-600">Currently Working:</strong> 
+                                    {% if experience.is_current %}
+                                        <span class="text-green-600 font-medium">Yes</span>
+                                    {% else %}
+                                        <span class="text-red-600 font-medium">No</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="col-span-full text-center text-gray-600">No work experience added yet.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Add Work Experience Link -->
+                <div class="mt-6">
+                    <a href="{% url 'create_work_experience' %}" 
+                    class="inline-block bg-purple-600 text-white font-medium py-2 px-4 rounded-md shadow hover:bg-purple-700 transition-all">
+                        + Add Work Experience
+                    </a>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="bg-purple-100 p-6 rounded-lg shadow-md mt-6">
+                <h3 class="text-xl font-bold text-purple-600 mb-6">Education</h3>
+
+                <!-- Education Cards Grid -->
+                <div id="education-section" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {% if education_data %}
+                        {% for education in education_data %}
+                            <!-- Education Card -->
+                            <div class="education-entry bg-white border border-purple-300 rounded-lg shadow-lg p-4 relative hover:shadow-xl hover:border-purple-400 transition-all">
+                                <!-- Edit Button -->
+                                <button 
+                                    class="absolute top-2 right-2 text-purple-500 hover:text-purple-700 transition-colors"
+                                    title="Edit Education">
+                                    <p>Edit</p>
+                                </button>
+
+                                <!-- Education Details -->
+                                <h4 class="text-lg font-semibold text-purple-600 mb-2 italic">{{ education.institute_name }}</h4>
+                                <p class="text-gray-700 mb-2">
+                                    <strong class="text-gray-600">Degree:</strong> {{ education.degree }}
+                                </p>
+                                <p class="text-gray-700 mb-2">
+                                    <strong class="text-gray-600">Start Date:</strong> {{ education.start_date }}
+                                </p>
+                                <p class="text-gray-700 mb-2">
+                                    <strong class="text-gray-600">End Date:</strong> 
+                                    {% if education.end_date %}
+                                        {{ education.end_date }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </p>
+                                <p class="text-gray-700">
+                                    <strong class="text-gray-600">Currently Enrolled:</strong> 
+                                    {% if education.is_current %}
+                                        <span class="text-green-600 font-medium">Yes</span>
+                                    {% else %}
+                                        <span class="text-red-600 font-medium">No</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="col-span-full text-center text-gray-600">No education added yet.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Add Education Link -->
+                <div class="mt-6">
+                    <a href="{% url 'create_education' %}" 
+                    class="inline-block bg-purple-600 text-white font-medium py-2 px-4 rounded-md shadow hover:bg-purple-700 transition-all">
+                        + Add Education
+                    </a>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!-- Skills Section -->
+            <div class="bg-purple-100 p-6 rounded-lg shadow-md mt-6 border border-purple-300">
+                <h3 class="text-xl font-semibold text-purple-600 mb-4">Skills</h3>
+                <div class="flex space-x-4">
+                    <div class="flex-1">
+                        <label for="skills" class="block mb-2 text-purple-600">Skills:</label>
+                        {{ resume_form.skills }}
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Certificates Section -->
+            <div class="bg-purple-100 p-6 rounded-lg shadow-md mt-6">
+                <h3 class="text-xl font-semibold text-purple-600 mb-4">Certificates</h3>
+                <div class="flex space-x-4">
+                    <div class="flex-1">
+                        <label for="certificates" class="block mb-2 text-purple-600">Certificates:</label>
+                        {{ resume_form.certificates }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interests Section -->
+            <div class="bg-purple-100 p-6 rounded-lg shadow-md mt-6">
+                <h3 class="text-xl font-semibold text-purple-600 mb-4">Interests</h3>
+                <div class="flex space-x-4">
+                    <div class="flex-1">
+                        <label for="interests" class="block mb-2 text-purple-600">Interests:</label>
+                        {{ resume_form.interests }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-md shadow-md transition">
+                Submit Resume
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
