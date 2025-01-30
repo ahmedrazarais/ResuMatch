@@ -1,0 +1,68 @@
+{% extends 'navbar.html' %}
+
+{% block title %}Home_Page{% endblock %}
+
+{% block content %}
+    <!-- Welcome Section -->
+    <section class="py-8 bg-gray-100 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl text-purple-700 font-bold mb-4">Welcome to ResuMatch</h1>
+            <p class="text-lg text-gray-700">Your one-stop platform for creating resumes, matching skills, and more!</p>
+        </div>
+    </section>
+
+    <!-- Features Boxes Section -->
+    <section class="py-12 bg-gray-200">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Create Resume -->
+                <a href="{% url "create_resume" %}" class="block bg-purple-100 shadow-lg border border-purple-300 p-6 text-center hover:bg-purple-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2">Create Resume</h3>
+                    <p>Build your professional resume effortlessly.</p>
+                </a>
+
+                <!-- SkillMatch -->
+                <a href="#" class="block bg-purple-100 shadow-lg border border-purple-300 p-6 text-center hover:bg-purple-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2">Edit Resume</h3>
+                    <p>Edit your resume efficiently for better opportunities.</p>
+                </a>
+
+                <!-- Chatbot -->
+                <a href="#" class="block bg-purple-100 shadow-lg border border-purple-300 p-6 text-center hover:bg-purple-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2">Skill Match</h3>
+                    <p>Compare Your Resume with Job Requirements </p>
+                </a>
+
+                <!-- Features -->
+                <a href="#" class="block bg-purple-100 shadow-lg border border-purple-300 p-6 text-center hover:bg-purple-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2">Features</h3>
+                    <p>Explore all the powerful tools we offer for job seekers.</p>
+                </a>
+
+            
+                <a href="#" class="block bg-purple-100 shadow-lg border border-purple-300 p-6 text-center hover:bg-purple-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2">Download Resume</h3>
+                    <p>Download the Resume in pdf or word.</p>
+                </a>
+
+                
+                <a href="#" class="block bg-purple-100 shadow-lg border border-purple-300 p-6 text-center hover:bg-purple-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2">Edit Resume</h3>
+                    <p>Edit your resume efficiently for better opportunities.</p>
+                </a>
+
+                
+                <a href="#" class="block bg-purple-100 shadow-lg border border-purple-300 p-6 text-center hover:bg-purple-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2">ChatBot</h3>
+                    <p>This Feature is under development . Stay tuned</p>
+                </a>
+
+                <!-- Contact Us -->
+                <a href="#" class="block bg-purple-100 shadow-lg border border-purple-300 p-6 text-center hover:bg-purple-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-semibold mb-2">Contact Us</h3>
+                    <p>Reach out for any questions or support.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
