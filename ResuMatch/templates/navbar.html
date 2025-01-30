@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load tailwind_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% tailwind_css %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Fixed Navbar -->
+    <nav class="bg-purple-800 text-white fixed top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-start items-center py-4 space-x-6">
+                <!-- Logo -->
+                <div class="text-lg font-bold">
+                    <a href="{% url "home" %}" class="hover:text-gray-200">ResuMatch</a>
+                </div>
+
+                <!-- Links -->
+                <a href="{% url "home" %}" class="hover:text-gray-200">Home</a>
+                <a href="{% url "about" %}" class="hover:text-gray-200">About</a>
+                <a href="{% url "create_resume" %}" class="hover:text-gray-200">Create Resume</a>
+                <a href="{% url "download_resume" %}" class="hover:text-gray-200">Download Resume</a>
+                <a href="{% url "upload_resume" %}" class="hover:text-gray-200">SkillMatch</a>
+               
+
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="flex-grow pt-20">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-purple-800 text-white text-center py-4 mt-4">
+        <div class="container mx-auto">
+            <p class="text-sm">&copy; 2024 ResuMatch. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
