@@ -1,0 +1,31 @@
+{% extends "navbar.html" %}
+
+{% block title %}
+    Upload Files
+{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-center items-center min-h-screen mt-[-50px]">
+            <div class="bg-color-white border-2 border-purple-700 p-8 rounded-xl shadow-xl w-full max-w-lg transition-transform transform hover:scale-105">
+                <h1 class="text-2xl text-center font-extrabold mb-4 text-purple-600">
+                    ResuMatch UploadFiles
+                </h1>
+                <p class="text-center text-lg text-gray-700 mb-6">
+                    Just upload your files and let us analyze them to match your skills with the job!
+                </p>
+                <form method="post" enctype="multipart/form-data" class="space-y-6">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="flex justify-between items-center space-x-4">
+                        
+                        <!-- Upload Files Button -->
+                        <button type="submit" class="bg-purple-800 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out transform hover:scale-105">
+                            Upload Files
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
