@@ -1,0 +1,18 @@
+# Mark HTML templates as vendored
+templates/* linguist-vendored
+*.html linguist-vendored
+
+# Mark static files as vendored
+static/* linguist-vendored
+assets/* linguist-vendored
+
+# Exclude CSS and JS files
+*.css linguist-vendored
+*.js linguist-vendored
+
+# Treat migrations and other non-core Python files as generated
+migrations/* linguist-generated
+
+# Exclude README and documentation files
+*.md linguist-documentation
+docs/* linguist-documentation
